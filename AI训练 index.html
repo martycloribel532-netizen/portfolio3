@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Bilingual Chinese AI response evaluation sample by Zhang Xianxu.">
+  <title>Zhang Xianxu | Chinese AI Evaluation Portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --surface: #ffffff;
+      --ink: #172033;
+      --muted: #5d687b;
+      --line: #e2e7f0;
+      --accent: #3457d5;
+      --accent-dark: #2442ad;
+      --soft: #edf1ff;
+      --green: #167a57;
+      --shadow: 0 18px 50px rgba(29, 42, 76, .08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+    header { padding: 22px 0; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { font-weight: 800; letter-spacing: -.03em; text-decoration: none; }
+    .nav a:last-child { color: var(--muted); font-size: .94rem; text-decoration: none; }
+    .hero { padding: 64px 0 48px; }
+    .eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; border: 1px solid #dbe2ff;
+      background: var(--soft); color: var(--accent-dark); border-radius: 999px;
+      padding: 6px 12px; font-size: .83rem; font-weight: 700;
+    }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+    h1 { font-size: clamp(2.5rem, 7vw, 4.8rem); line-height: 1.04; letter-spacing: -.065em; margin: 22px 0 18px; max-width: 850px; }
+    .lead { max-width: 720px; color: var(--muted); font-size: clamp(1.05rem, 2.2vw, 1.23rem); margin: 0; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; padding: 12px 17px; border-radius: 12px; font-weight: 750; text-decoration: none; border: 1px solid var(--line); background: var(--surface); }
+    .button.primary { background: var(--accent); border-color: var(--accent); color: white; }
+    .button.primary:hover { background: var(--accent-dark); }
+    .button:hover { transform: translateY(-1px); }
+    .section { padding: 28px 0 34px; }
+    .section-head { margin-bottom: 20px; }
+    .section-head h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; letter-spacing: -.04em; margin: 0 0 8px; }
+    .section-head p { color: var(--muted); margin: 0; max-width: 700px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: var(--shadow); }
+    .card h3 { margin: 12px 0 8px; font-size: 1.08rem; letter-spacing: -.02em; }
+    .card p { margin: 0; color: var(--muted); font-size: .96rem; }
+    .number { display: inline-grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--soft); color: var(--accent); font-weight: 800; }
+    .project { display: grid; grid-template-columns: 1.1fr .9fr; gap: 24px; align-items: start; }
+    .project-main { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: clamp(22px, 4vw, 34px); box-shadow: var(--shadow); }
+    .project-main h3 { margin: 0 0 8px; font-size: 1.45rem; letter-spacing: -.035em; }
+    .project-main > p { color: var(--muted); margin: 0 0 20px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 24px; }
+    .tag { border: 1px solid var(--line); border-radius: 999px; padding: 5px 10px; color: #44516a; font-size: .82rem; }
+    .mini-title { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 800; margin: 20px 0 8px; }
+    .quote { border-left: 3px solid var(--accent); padding: 2px 0 2px 14px; color: #354056; margin: 0; }
+    .side { display: grid; gap: 16px; }
+    .side .card { box-shadow: none; }
+    .side h3 { margin-top: 0; }
+    ul { padding-left: 20px; margin: 8px 0 0; color: var(--muted); }
+    li + li { margin-top: 6px; }
+    .note { border: 1px solid #d8e9e2; background: #f0faf6; border-radius: 14px; padding: 15px 17px; color: #245b49; font-size: .92rem; }
+    .contact { display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #18213a; color: white; border-radius: 20px; padding: 26px; }
+    .contact h2 { margin: 0 0 6px; font-size: 1.45rem; letter-spacing: -.03em; }
+    .contact p { margin: 0; color: #c4cce0; }
+    .contact .button { white-space: nowrap; background: white; color: #18213a; border-color: white; }
+    footer { color: var(--muted); padding: 28px 0 36px; font-size: .88rem; }
+    @media (max-width: 760px) {
+      .hero { padding-top: 42px; }
+      .grid { grid-template-columns: 1fr; }
+      .project { grid-template-columns: 1fr; }
+      .contact { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">ZX / Portfolio</a>
+      <a href="#project">Featured sample ↓</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <span class="eyebrow"><span class="dot"></span> Bilingual AI Language Evaluation</span>
+      <h1>Chinese language quality, evaluated with care.</h1>
+      <p class="lead">
+        I'm Zhang Xianxu, a native Simplified Chinese speaker building practical samples in AI response
+        evaluation, factual consistency review, and Chinese-language quality improvement. This portfolio
+        presents a bilingual example of identifying issues in an AI response and producing a more accurate,
+        appropriately qualified revision.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="#project">Explore the sample <span aria-hidden="true">↗</span></a>
+        <a class="button" href="./Bilingual%20AI%20Content%20Evaluation%20%26%20Training.pdf" target="_blank" rel="noopener">Open PDF sample ↗</a>
+      </div>
+    </section>
+
+    <section class="section wrap" aria-labelledby="focus-title">
+      <div class="section-head">
+        <h2 id="focus-title">What this sample demonstrates</h2>
+        <p>A compact, reviewable example of language evaluation work, shown in both Simplified Chinese and English.</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="number">01</span>
+          <h3>Issue identification</h3>
+          <p>Identify factual inaccuracies, overgeneralizations, and conclusions that are not supported by the response.</p>
+        </article>
+        <article class="card">
+          <span class="number">02</span>
+          <h3>Chinese response revision</h3>
+          <p>Rewrite an answer with clearer qualifications and more careful wording while preserving practical usefulness.</p>
+        </article>
+        <article class="card">
+          <span class="number">03</span>
+          <h3>English evaluation rationale</h3>
+          <p>Explain the key quality issues in English so that the review reasoning is accessible to a bilingual team.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section wrap" id="project" aria-labelledby="project-title">
+      <div class="section-head">
+        <h2 id="project-title">Featured project</h2>
+        <p>One bilingual response-evaluation sample.</p>
+      </div>
+      <div class="project">
+        <article class="project-main">
+          <h3>Chinese Response Evaluation Sample</h3>
+          <p>
+            The sample reviews an AI answer claiming that everyone must drink exactly eight glasses of water
+            each day. It identifies the unsupported universal claim, explains why individual fluid needs vary,
+            and presents a revised Chinese response with an English translation and evaluation rationale.
+          </p>
+          <div class="tags">
+            <span class="tag">Simplified Chinese</span>
+            <span class="tag">English rationale</span>
+            <span class="tag">Factuality review</span>
+            <span class="tag">Response rewriting</span>
+          </div>
+          <div class="mini-title">Evaluation approach</div>
+          <p class="quote">
+            Distinguish a common recommendation from a universal requirement, acknowledge relevant individual
+            differences, and avoid presenting unsupported claims as facts.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="./Bilingual%20AI%20Content%20Evaluation%20%26%20Training.pdf" target="_blank" rel="noopener">Read the full PDF ↗</a>
+          </div>
+        </article>
+        <aside class="side">
+          <div class="card">
+            <h3>Workflow shown</h3>
+            <ul>
+              <li>Review the original prompt and AI response.</li>
+              <li>Identify specific quality issues.</li>
+              <li>Write a corrected Simplified Chinese response.</li>
+              <li>Provide an English explanation of the revision.</li>
+            </ul>
+          </div>
+          <div class="note">
+            <strong>Scope:</strong> This page presents a work sample. It does not claim professional employment,
+            client projects, certifications, or production-scale annotation experience.
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section wrap">
+      <div class="contact">
+        <div>
+          <h2>Review the work sample</h2>
+          <p>The PDF includes the original Chinese example and an English translation.</p>
+        </div>
+        <a class="button" href="./Bilingual%20AI%20Content%20Evaluation%20%26%20Training.pdf" target="_blank" rel="noopener">View PDF sample ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    © <span id="year">2026</span> Zhang Xianxu · Bilingual AI language evaluation portfolio
+  </footer>
+</body>
+</html>
